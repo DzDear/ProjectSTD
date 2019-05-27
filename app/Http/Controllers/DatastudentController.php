@@ -23,8 +23,8 @@ class DatastudentController extends Controller
      */
     public function index(Request $request)
     {
-      $student_type = '';
       // dd($request->type);
+      $student_type = '';
       if ($request->has('student_type')) {
         $student_type = $request->get('student_type');
         $request->type = $student_type;
@@ -55,17 +55,21 @@ class DatastudentController extends Controller
 
     public function SaveDatastudent(Request $request)
     {
-        // code...
+        $this->validate($request,['subject' => 'required','dateStudent'=> 'required']);
+        // dd($request->type);
         foreach ($request->checkStudent as $Number => $status) {
-          dd($request->Classtype); 
           $CheckData = new CheckDatastudent([
             'Card_student' => $Number,
             'type_check' => $status,
+            'date_Student' => $request->dateStudent,
+            'sub_ject' => $request->subject,
+            'Class_Room' => $request->type,
           ]);
           $CheckData->save();
         }
+        $type = $request->type;
 
-        dd('บันทึกข้อมูลเรียบร้อย');
+        return redirect()->Route('Checkstuednt', compact('type'))->with('success','เช็คชื่อนักเรียน เรียบร้อย');
     }
 
     /**

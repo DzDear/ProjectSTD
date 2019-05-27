@@ -18,6 +18,9 @@ class CreateCheckDatastudentsTable extends Migration
             $table->integer('student_id')->nullable();
             $table->string('Card_student')->nullable();
             $table->string('type_check')->nullable();
+            $table->date('date_Student')->nullable();
+            $table->string('sub_ject')->nullable();
+            $table->string('Class_Room')->nullable();
             $table->timestamps();
         });
     }

@@ -35,11 +35,11 @@ Route::group(['middleware' => 'auth'], function()
     Route::post('import', 'ImportController@Import')->name('import');
 
     route::resource('SeacrhStudent','StudentController');
-    Route::get('/datastudent/view/', 'DatastudentController@indexView')->name('DataStudent');
-    Route::post('/datastudent/datastudent/', 'DatastudentController@SaveDatastudent')->name('teacher.SaveDatastudent');
-
     Route::get('/begin/view/', 'BeginController@index')->name('Begin');
 
+    // route::resource('dbcheckstudent','DatastudentController');
+    Route::get('/datastudent/view/', 'DatastudentController@indexView')->name('DataStudent');
+    Route::post('/datastudent/datastudent/{type}', 'DatastudentController@SaveDatastudent')->name('SaveDatastudent');
     //แสดงนักเรียนทั้งหมด
     Route::get('/datastudent/checkstudent/{type}', 'DatastudentController@index')->name('Checkstuednt');
 

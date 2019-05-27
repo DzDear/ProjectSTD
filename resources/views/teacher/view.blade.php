@@ -41,6 +41,19 @@
               </div>
             @endif
 
+            {{-- เช็คการกรอกข้อมูล --}}
+            @if (count($errors) > 0)
+              <div class="alert alert-danger">
+              <ul>
+                  @foreach($errors->all() as $error)
+                    @if($error != "")
+                      <li>กรุณาเลือกวิชาเรียนด้วยครับ / ค่ะ ({{$error}})</li>
+                    @endif
+                  @endforeach
+              </ul>
+              </div>
+            @endif
+
             <div class="row">
               <div class="col-md-12">
 
@@ -108,9 +121,20 @@
               <form method="post" action="{{ action('DatastudentController@SaveDatastudent',$type) }}"  enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="Classtype" value="{{ $type }}" />
+                <P></P>
                 <div align="right" class="form-inline">
-                  <button type="submit" class="btn btn-warning">
-                  <span class="glyphicon glyphicon-search"></span> บันทึก
+                  <label>วันที่ : &nbsp;</label>
+                    <input type="date" class="form-control" name="dateStudent"  value="{{ date('Y-m-d') }}" style="width: 170px;" />
+                  <label>วิชา : &nbsp;</label>
+                  <select name="subject" class="form-control" style="width: 170px;">
+                    <option value="" disabled selected>เลือกวิชาเรียน</option>
+                    <option value="ภาษาไทย">ภาษาไทย</option>
+                    <option value="อังกฤษ">อังกฤษ</option>
+                    <option value="คนิตศาสตร์">คนิตศาสตร์</option>
+                    <option value="วิทยาศาสตร์">วิทยาศาสตร์</option>
+                  </select>
+                  <button type="submit" class="btn btn-warning" style="width: 88px;">
+                    <span class="glyphicon glyphicon-floppy-saved"></span> บันทึก
                   </button>
                 </div>
               <table class="table table-bordered" id="table">
