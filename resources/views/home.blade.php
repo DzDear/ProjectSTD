@@ -11,7 +11,7 @@
                 </div>
                 <br />
 
-                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                        <div id="chart_div"></div>
                     <br/>
                     <div id="btn-group" align="center">
@@ -61,7 +61,7 @@
                         }
                       }
                     }
-                 </script>
+                 </script> -->
 
                 <div class="card-body">
                     @if (session('status'))

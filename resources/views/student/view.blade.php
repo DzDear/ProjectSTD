@@ -1,5 +1,5 @@
 @extends('layout_home.master')
-@section('title','รายชื่อนักเรียน')
+@section('title','ระบบรายชื่อนักเรียน')
 @section('PetControl')
 
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -10,7 +10,7 @@
 
     <section class="content-header">
       <h1>
-        รายงาน
+        ระบบรายชื่อนักเรียน
         <small>it all starts here</small>
       </h1>
     </section>
@@ -21,7 +21,7 @@
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <h3 align="center"><b>รายชื่อนักเรียน {{ $title }}</b></h3>
+          <h3 align="center"><b>รายชื่อนักเรียน</b></h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
               <i class="fa fa-minus"></i></button>
@@ -41,137 +41,86 @@
               </div>
             @endif
 
-            <div align="right" class="form-inline form-group">
-              <!-- <button type="submit" class="btn btn-warning">
-              <span class="glyphicon glyphicon-search"></span> บันทึก
-              </button> -->
-              <a href="{{ route('student.create',$type) }}" class="btn btn-success">
-              <span class="glyphicon glyphicon-plus"></span> เพิ่มข้อมูล
-              </a>
-            </div>
-
             <div class="row">
               <div class="col-md-12">
-
-               <form method="get" action="{{ action('StudentController@index',$type) }}">
-                <div align="right" class="form-inline">
-                  <label>ห้องเรียน : </label>
-                  @if ($type == 11 or $type == 12 or $type == 13 or $type == 14 or $type == 15 or $type == 16 or $type == 17)
-                  <select name="student_type" class="form-control" style="width: 170px;">
-                    <option value="11" {{ ($student_type == 11) ? 'selected' : '' }}>นักเรียนห้อง ม.1/1</option>
-                    <option value="12" {{ ($student_type == 12) ? 'selected' : '' }}>นักเรียนห้อง ม.1/2</option>
-                    <option value="13" {{ ($student_type == 13) ? 'selected' : '' }}>นักเรียนห้อง ม.1/3</option>
-                    <option value="14" {{ ($student_type == 14) ? 'selected' : '' }}>นักเรียนห้อง ม.1/4</option>
-                    <option value="15" {{ ($student_type == 15) ? 'selected' : '' }}>นักเรียนห้อง ม.1/5</option>
-                    <option value="16" {{ ($student_type == 16) ? 'selected' : '' }}>นักเรียนห้อง ม.1/6</option>
-                    <option value="17" {{ ($student_type == 17) ? 'selected' : '' }}>นักเรียนห้อง ม.1/7</option>
-                  </select>
-                  @elseif($type == 21 or $type == 22 or $type == 23 or $type == 24 or $type == 25)
-                  <select name="student_type" class="form-control" style="width: 170px;">
-                    <option value="21" {{ ($student_type == 21) ? 'selected' : '' }}>นักเรียนห้อง ม.2/1</option>
-                    <option value="22" {{ ($student_type == 22) ? 'selected' : '' }}>นักเรียนห้อง ม.2/2</option>
-                    <option value="23" {{ ($student_type == 23) ? 'selected' : '' }}>นักเรียนห้อง ม.2/3</option>
-                    <option value="24" {{ ($student_type == 24) ? 'selected' : '' }}>นักเรียนห้อง ม.2/4</option>
-                    <option value="25" {{ ($student_type == 25) ? 'selected' : '' }}>นักเรียนห้อง ม.2/5</option>
-                  </select>
-                  @elseif($type == 31 or $type == 32 or $type == 33 or $type == 34 or $type == 35 or $type == 36)
-                  <select name="student_type" class="form-control" style="width: 170px;">
-                    <option value="31" {{ ($student_type == 31) ? 'selected' : '' }}>นักเรียนห้อง ม.3/1</option>
-                    <option value="32" {{ ($student_type == 32) ? 'selected' : '' }}>นักเรียนห้อง ม.3/2</option>
-                    <option value="33" {{ ($student_type == 33) ? 'selected' : '' }}>นักเรียนห้อง ม.3/3</option>
-                    <option value="34" {{ ($student_type == 34) ? 'selected' : '' }}>นักเรียนห้อง ม.3/4</option>
-                    <option value="35" {{ ($student_type == 35) ? 'selected' : '' }}>นักเรียนห้อง ม.3/5</option>
-                    <option value="36" {{ ($student_type == 36) ? 'selected' : '' }}>นักเรียนห้อง ม.3/6</option>
-                  </select>
-                  @elseif($type == 41 or $type == 42 or $type == 43 or $type == 44 or $type == 45 or $type == 46)
-                  <select name="student_type" class="form-control" style="width: 170px;">
-                    <option value="41" {{ ($student_type == 41) ? 'selected' : '' }}>นักเรียนห้อง ม.4/1</option>
-                    <option value="42" {{ ($student_type == 42) ? 'selected' : '' }}>นักเรียนห้อง ม.4/2</option>
-                    <option value="43" {{ ($student_type == 43) ? 'selected' : '' }}>นักเรียนห้อง ม.4/3</option>
-                    <option value="44" {{ ($student_type == 44) ? 'selected' : '' }}>นักเรียนห้อง ม.4/4</option>
-                    <option value="45" {{ ($student_type == 45) ? 'selected' : '' }}>นักเรียนห้อง ม.4/5</option>
-                    <option value="46" {{ ($student_type == 46) ? 'selected' : '' }}>นักเรียนห้อง ม.4/6</option>
-                  </select>
-                  @elseif($type == 51 or $type == 52 or $type == 53 or $type == 54 or $type == 55)
-                  <select name="student_type" class="form-control" style="width: 170px;">
-                    <option value="51" {{ ($student_type == 51) ? 'selected' : '' }}>นักเรียนห้อง ม.5/1</option>
-                    <option value="52" {{ ($student_type == 52) ? 'selected' : '' }}>นักเรียนห้อง ม.5/2</option>
-                    <option value="53" {{ ($student_type == 53) ? 'selected' : '' }}>นักเรียนห้อง ม.5/3</option>
-                    <option value="54" {{ ($student_type == 54) ? 'selected' : '' }}>นักเรียนห้อง ม.5/4</option>
-                    <option value="55" {{ ($student_type == 55) ? 'selected' : '' }}>นักเรียนห้อง ม.5/5</option>
-                  </select>
-                  @elseif($type == 61 or $type == 62 or $type == 63 or $type == 64)
-                  <select name="student_type" class="form-control" style="width: 170px;">
-                    <option value="61" {{ ($student_type == 61) ? 'selected' : '' }}>นักเรียนห้อง ม.6/1</option>
-                    <option value="62" {{ ($student_type == 62) ? 'selected' : '' }}>นักเรียนห้อง ม.6/2</option>
-                    <option value="63" {{ ($student_type == 63) ? 'selected' : '' }}>นักเรียนห้อง ม.6/3</option>
-                    <option value="64" {{ ($student_type == 64) ? 'selected' : '' }}>นักเรียนห้อง ม.6/4</option>
-                  </select>
-                  @endif
-                  <button type="submit" class="btn btn-primary">
-                  <span class="glyphicon glyphicon-search"></span> Search
-                  </button>
-                </div>
-              </form>
-
-              <table class="table table-bordered" id="table">
-                <thead class="thead-dark">
+                <form method="get" action="{{ route('ViewStudent',1) }}">
+                  <div align="right" class="form-inline">
+                    <a href="{{ route('student.create',$type) }}" class="btn btn-success btn-app">
+                      <span class="glyphicon glyphicon-plus"></span> เพิ่มข้อมูล
+                    </a>
+                    <button type="submit" class="btn btn-primary btn-app">
+                      <span class="glyphicon glyphicon-search"></span> Search
+                    </button>
+                  </div>
                   <br>
-                  <tr>
-                    <th class="text-center">เลขที่</th>
-                    <th class="text-center">รหัสนักเรียน</th>
-                    <th class="text-center">บัตรประชาชน</th>
-                    <th class="text-center">คำนำหน้า</th>
-                    <th class="text-center">ชื่อ</th>
-                    <th class="text-center">นามสกุล</th>
-                    <th class="text-center">ชั้นศาสนา</th>
-                    <th class="text-center">สถานะ</th>
-                    <th class="text-center">Action</th>
-                  </tr>
-                </thead>
+                  <div align="right" class="form-inline">
+                    <label>นักเรียนชั้นมัธยมที่ : </label>
+                      <select name="student_type" class="form-control" style="width: 150px;">
+                      <option value="1" {{ ($studentType == 1) ? 'selected' : '' }}>ชั้น ม.1</option>
+                      <option value="2" {{ ($studentType == 2) ? 'selected' : '' }}>ชั้น ม.2</option>
+                      <option value="3" {{ ($studentType == 3) ? 'selected' : '' }}>ชั้น ม.3</option>
+                      <option value="4" {{ ($studentType == 4) ? 'selected' : '' }}>ชั้น ม.4</option>
+                      <option value="5" {{ ($studentType == 5) ? 'selected' : '' }}>ชั้น ม.5</option>
+                      <option value="6" {{ ($studentType == 6) ? 'selected' : '' }}>ชั้น ม.6</option>
+                    </select>
 
-                <tbody>
-                  <form method="get" action="{{ action('StudentController@index',$type) }}">
-                    <!-- <button type="submit" class="btn btn-warning">
-                    <span class="glyphicon glyphicon-search"></span> บันทึก
-                    </button> -->
-                  @foreach($data as $key => $row)
+                    <label>ห้องเรียน : </label>
+                      <select name="student_room" class="form-control" style="width: 150px;">
+                      <option value="1" {{ ($studentRoom == 1) ? 'selected' : '' }}>ห้อง 1</option>
+                      <option value="2" {{ ($studentRoom == 2) ? 'selected' : '' }}>ห้อง 2</option>
+                      <option value="3" {{ ($studentRoom == 3) ? 'selected' : '' }}>ห้อง 3</option>
+                      <option value="4" {{ ($studentRoom == 4) ? 'selected' : '' }}>ห้อง 4</option>
+                      <option value="5" {{ ($studentRoom == 5) ? 'selected' : '' }}>ห้อง 5</option>
+                      <option value="6" {{ ($studentRoom == 6) ? 'selected' : '' }}>ห้อง 6</option>
+                      <option value="7" {{ ($studentRoom == 7) ? 'selected' : '' }}>ห้อง 7</option>
+                      <option value="8" {{ ($studentRoom == 8) ? 'selected' : '' }}>ห้อง 8</option>
+                    </select>
+                  </div>
+                </form>
+
+                <table class="table table-bordered" id="table">
+                  <thead class="thead-dark">
+                    <br>
                     <tr>
-                      <td class="text-center">{{$key+1}}</td>
-                      <td class="text-center">{{$row->Number}}</td>
-                      <td class="text-center">{{$row->Id_Card}}</td>
-                      <td class="text-center">{{$row->Pname}}</td>
-                      <td class="text-center" width='15%'>{{$row->Fname}}</td>
-                      <td class="text-center" width='15%'>{{$row->Lname}}</td>
-                      <td class="text-center">{{$row->Class_Room}}</td>
-                      <td class="text-center">
-                        <select name="student_type" class="form-control" style="width: 70px;">
-                          <option value="ma">มา</option>
-                          <option value="kad">ขาด</option>
-                          <option value="say">สาย</option>
-                          <option value="lap">ลาป่วย</option>
-                          <option value="lak">ลากิจ</option>
-                        </select>
-                      </td>
-                  </form>
-                      <td class="text-center">
-                        <a href="{{ action('StudentController@edit',[$row['id'],$row->Type]) }}" class="btn btn-warning btn-sm" title="แก้ไขรายการ">
-                        <span class="glyphicon glyphicon-edit"></span>
-                        </a>
-                      <div class="form-inline form-group">
-                        <form method="post" class="delete_form" action="{{ action('StudentController@destroy',$row['id']) }}">
-                        {{csrf_field()}}
-                          <input type="hidden" name="_method" value="DELETE" />
-                          <button type="submit" class="delete-modal btn btn-danger btn-sm" title="ลบรายการ">
-                            <span class="glyphicon glyphicon-trash"></span>
-                          </button>
-                        </form>
-                      </div>
-                      </td>
+                      <th class="text-center">เลขที่</th>
+                      <th class="text-center">รหัสนักเรียน</th>
+                      <th class="text-center">บัตรประชาชน</th>
+                      <th class="text-center">คำนำหน้า</th>
+                      <th class="text-center">ชื่อ</th>
+                      <th class="text-center">นามสกุล</th>
+                      <th class="text-center">ชั้นศาสนา</th>
+                      <th class="text-center">Action</th>
                     </tr>
-                  @endforeach
-                </tbody>
-            </table>
+                  </thead>
+
+                  <tbody>
+                      @foreach($data as $key => $row)
+                        <tr>
+                          <td class="text-center">{{$key+1}}</td>
+                          <td class="text-center">{{$row->Number}}</td>
+                          <td class="text-center">{{$row->Id_Card}}</td>
+                          <td class="text-center">{{$row->Pname}}</td>
+                          <td class="text-center" width='15%'>{{$row->Fname}}</td>
+                          <td class="text-center" width='15%'>{{$row->Lname}}</td>
+                          <td class="text-center">{{$row->Class_Room}}</td>
+                          <td class="text-center">
+                            <a href="{{ action('StudentController@edit',[$row->id]) }}" class="btn btn-warning btn-sm" title="แก้ไขรายการ">
+                              <span class="glyphicon glyphicon-edit"></span> แก้ไข
+                            </a>
+                            <div class="form-inline form-group">
+                              <form method="post" class="delete_form" action="{{ action('StudentController@destroy',$row->id) }}">
+                              {{csrf_field()}}
+                                <input type="hidden" name="_method" value="DELETE" />
+                                <button type="submit" class="delete-modal btn btn-danger btn-sm" title="ลบรายการ">
+                                  <span class="glyphicon glyphicon-trash"></span> ลบ
+                                </button>
+                              </form>
+                            </div>
+                          </td>
+                        </tr>
+                      @endforeach
+                  </tbody>
+                </table>
 
             </div>
           </div>

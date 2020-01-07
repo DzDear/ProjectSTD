@@ -68,13 +68,28 @@ class UserController extends Controller
       // dd($user);
       $arrayType = [
         1 => 'Admin',
-        2 => 'Writer',
-        3 => 'Reader',
+        2 => 'ฝ่ายอนุมัติ',
+        3 => 'จัดไฟแนนท์',
+        4 => 'ฝ่ายอนุมัติรถบ้าน',
+        21 => 'กฏหมาย',
+      ];
+
+      $arrayBranch = [
+        99 => 'Admin',
+        01 => 'ปัตตานี',
+        03 => 'ยะลา',
+        04 => 'นราธิวาส',
+        05 => 'สายบุรี',
+        06 => 'โกลก',
+        07 => 'เบตง',
+        10 => 'รถบ้าน',
+        11 => 'รถยืดขายผ่อน',
+        21 => 'แผนกกฏหมาย',
+        31 => 'แผนกเร่งรัด',
       ];
 
       // dd($arrayType);
-
-      return view('maindata.edit',compact('user','id','arrayType'));
+      return view('maindata.edit',compact('user','id','arrayType','arrayBranch'));
     }
 
     /**
@@ -127,12 +142,14 @@ class UserController extends Controller
 
     public function Saveregister(Request $request)  //บันทึก
     {
+      // dd($request);
       User::create([
         'name' => $request->get('name'),
         'username' => $request->get('username'),
         'email' => $request->get('email'),
         'password' => bcrypt($request->get('password')),
         'type' => $request->get('section_type'),
+        'branch' => $request->get('branch'),
       ]);
 
       return redirect()->Route('ViewMaindata')->with('success','อัพเดตข้อมูลเรียบร้อย');

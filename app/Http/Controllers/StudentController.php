@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\studentdb;
 use App\Imports\UsersImport;
 use Helper;
+use DB;
 
 use Excel;
 use Carbon\Carbon;
@@ -23,24 +24,39 @@ class StudentController extends Controller
      */
     public function index(Request $request)
     {
-      // dd($request);
-      $student_type = '';
+      $studentType = '';
+      $studentRoom = '';
 
       if ($request->has('student_type')) {
-        $student_type = $request->get('student_type');
-        $request->type = $student_type;
+        $studentType = $request->get('student_type');
       }
-      // dd($request->type);
+      if ($request->has('student_room')) {
+        $studentRoom = $request->get('student_room');
+      }
 
-      $data = studentdb::where('type',$request->type)->get();
+      if ($request->type == 1 and $studentRoom == Null) {
+        $data = DB::table('studentdbs')
+        ->where('Room','=',1)
+        ->get();
+      }else {
+        $data = DB::table('studentdbs')
+        // ->where('Type','=',$studentType)
+        ->when(!empty($studentType), function($q) use($studentType){
+          return $q->where('Type','=',$studentType);
+        })
+        ->when(!empty($studentRoom), function($q) use($studentRoom){
+          return $q->where('Room','=',$studentRoom);
+        })
+        ->get();
+      }
       // dd($data);
-      $title = Helper::Gettitle();
 
-      $title = $title[$request->type -1];
+      // $data = studentdb::where('type',$request->type)->get();
+      // $title = Helper::Gettitle();
+      // $title = $title[$request->type -1];
+
       $type = $request->type;
-
-      // dd($title);
-      return view('student.view', compact('data','title','type','student_type'));
+      return view('student.view', compact('data','title','type','studentType','studentRoom'));
     }
 
     /**

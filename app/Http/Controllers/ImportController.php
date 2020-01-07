@@ -17,11 +17,11 @@ class ImportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        // dd('index');
-        return view('import.import');
+        // dd($request->type);
+        $type = $request->type;
+        return view('import.import',compact('type'));
     }
 
     /**
@@ -31,7 +31,6 @@ class ImportController extends Controller
      */
     public function create()
     {
-        //
         // dd('asdsad');
         return view('import.import');
     }
@@ -92,7 +91,7 @@ class ImportController extends Controller
         //
     }
 
-    public function Import(Request $request)
+    public function importDataStudent(Request $request)
     {
         $this->validate($request,['file' => 'required']);
 
@@ -111,6 +110,7 @@ class ImportController extends Controller
               $studentFromDB->Lname = $user[4];
               $studentFromDB->Class_Room = $user[5];
               $studentFromDB->Type = $user[6];
+              $studentFromDB->Room = $user[7];
 
               $studentFromDB->save();
 
@@ -125,6 +125,52 @@ class ImportController extends Controller
               $student->Lname = $user[4];
               $student->Class_Room = $user[5];
               $student->Type = $user[6];
+              $student->Room = $user[7];
+
+              $student->save();
+            }
+          }
+        }
+        return redirect()->Route('import.create')->with('success','อัพเดตข้อมูลเรียบร้อย');
+    }
+
+    public function importCheckStudent(Request $request)
+    {
+      dd('dfghjkl');
+      
+        $this->validate($request,['file' => 'required']);
+
+        $usersCollection = Excel::toCollection(new UsersImport(), $request->file('file'));
+
+        foreach ($usersCollection[0] as $user) {
+          $studentFromDB = studentdb::where('Number', '=', $user[0])->first();
+
+          if ($user[0] != 'Number') {
+            if($studentFromDB != null && $studentFromDB->exists()) {
+              //Update here..
+              $studentFromDB->Number = $user[0];
+              $studentFromDB->Id_Card = $user[1];
+              $studentFromDB->Pname = $user[2];
+              $studentFromDB->Fname = $user[3];
+              $studentFromDB->Lname = $user[4];
+              $studentFromDB->Class_Room = $user[5];
+              $studentFromDB->Type = $user[6];
+              $studentFromDB->Room = $user[7];
+
+              $studentFromDB->save();
+
+            } else {
+              //Create here
+              $student = new studentdb();
+
+              $student->Number = $user[0];
+              $student->Id_Card = $user[1];
+              $student->Pname = $user[2];
+              $student->Fname = $user[3];
+              $student->Lname = $user[4];
+              $student->Class_Room = $user[5];
+              $student->Type = $user[6];
+              $student->Room = $user[7];
 
               $student->save();
             }

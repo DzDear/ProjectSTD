@@ -83,8 +83,25 @@
                           <select name="section_type" class="form-control" style="width: 330px;">
                             <option selected disabled value="" >Select type</option>
                             <option value="1" > Admin</option>
-                            <option value="2" > Writer</option>
-                            <option value="3" > Reader</option>
+                            <option value="2" > ฝ่ายอนุมัติ</option>
+                            <option value="3" > จัดไฟแนนท์</option>
+                          </select>
+                        </div>
+
+                        <div class="form-inline form-group">
+                          <label for="password-confirm" class="col-md-4 col-form-label text-md-right">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            สาขา</label>
+                            &nbsp;&nbsp;&nbsp;
+                          <select name="branch" class="form-control" style="width: 330px;">
+                            <option selected disabled value="" >เลือกสาขา</option>
+                            <option value="99" > Admin</option>
+                            <option value="01" > ปัตตานี</option>
+                            <option value="02" > ยะลา</option>
+                            <option value="03" > นราธิวาส</option>
+                            <option value="04" > สายบุรี</option>
+                            <option value="05" > โกลก</option>
+                            <option value="06" > เบตง</option>
                           </select>
                         </div>
 

@@ -31,22 +31,21 @@ Route::group(['middleware' => 'auth'], function()
     Route::patch('/maindata/update/{id}', 'UserController@update')->name('maindata.update');
     Route::delete('/maindata/delete/{id}', 'UserController@destroy')->name('maindata.destroy');
 
-    route::resource('import','ImportController');
-    Route::post('import', 'ImportController@Import')->name('import');
+    // route::resource('import','ImportController');
+    Route::get('/import/{type}', 'ImportController@index')->name('indexImport');
+    Route::post('importDataStudent', 'ImportController@importDataStudent')->name('importDataStudent');
+    Route::post('importCheckStudent', 'ImportController@importCheckStudent')->name('importCheckStudent');
 
     route::resource('SeacrhStudent','StudentController');
-    Route::get('/begin/view/', 'BeginController@index')->name('Begin');
 
-    // route::resource('dbcheckstudent','DatastudentController');
     Route::get('/datastudent/view/', 'DatastudentController@indexView')->name('DataStudent');
     Route::post('/datastudent/datastudent/{type}', 'DatastudentController@SaveDatastudent')->name('SaveDatastudent');
-    //แสดงนักเรียนทั้งหมด
+    // //แสดงนักเรียนทั้งหมด
     Route::get('/datastudent/checkstudent/{type}', 'DatastudentController@index')->name('Checkstuednt');
-
 
     Route::get('/student/view/{type}', 'StudentController@index')->name('ViewStudent');
     Route::get('/student/create/{type}', 'StudentController@create')->name('student.create');
-    Route::get('/student/edit/{id}/{type}', 'StudentController@edit')->name('student.edit');
+    Route::get('/student/edit/{id}', 'StudentController@edit')->name('student.edit');
 
     Route::delete('/student/delete/{id}', 'StudentController@destroy')->name('student.destroy');
     Route::post('/student/store', 'StudentController@store')->name('student.store');
@@ -56,4 +55,3 @@ Route::group(['middleware' => 'auth'], function()
     Route::get('/{name}', 'HomeController@index')->name('index');
 
   });
-    Route::get('/teacher','TeacherController@index')->name('teacher.studentall');

@@ -22,6 +22,7 @@ class UsersImport implements ToModel
           'Lname'         => $row[5],
           'Class_Room'    => $row[6],
           'Type'          => $row[7],
+          'Room'          => $row[8],
         ]);
     }
 }

@@ -22,6 +22,7 @@ class CreateStudentdbsTable extends Migration
             $table->string('Lname');
             $table->string('Class_Room');
             $table->string('Type');
+            $table->string('Room');
             $table->timestamps();
         });
     }
